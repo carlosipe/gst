@@ -21,6 +21,8 @@ USAGE
 
       $ gst in gem env home
 
+    Using \`gst in\` while inside a gemset will run \`source gst out\` before entering the new one.
+
 COMMANDS
     init    Creates the .gs directory
     in      Modifies GEM_HOME, GEM_PATH and PATH to use the .gs directory and sets the GS_NAME variable.
@@ -37,14 +39,14 @@ case "$1" in
   "init")
     mkdir .gs;;
   "in")
-    if [[ -n $GS_NAME ]]; then return; fi
-
     GS_DIR="$(pwd)/.gs"
 
     if [[ ! -d $GS_DIR ]]; then
       echo "Directory .gs not found. Run \`gst init\` first."
       exit 1
     fi
+
+    if [[ -n $GS_NAME ]]; then . gst out; fi
 
     GST_OLD_PATH=$PATH
     GST_OLD_GEM_PATH=$GEM_PATH

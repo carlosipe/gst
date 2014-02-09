@@ -27,6 +27,8 @@ You can also run commands in the gemset using `gst in` without sourcing. This wi
 $ gst in gem env home
 ```
 
+Using `source gst in` while inside a gemset will run `source gst out` before entering the new one.
+
 ### COMMANDS
 
 ```shell
